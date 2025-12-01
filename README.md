@@ -59,7 +59,7 @@ The project is currently configured with a demo vendor prefix (`x-513106`). **Be
 
 **Example Scenario:**
 * **Current Prefix:** `x-513106`
-* **Your Prefix:** `x-999999` (Check your instance URL or property `glide.appcreator.company.code`)
+* **Your Prefix:** `x-999999` (Check sys_property `glide.appcreator.company.code`)
 
 ### ⚡ Option 1: The Quick Way (VS Code)
 
