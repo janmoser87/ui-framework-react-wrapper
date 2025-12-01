@@ -17,9 +17,7 @@
     "build:tailwind": "tailwindcss -i ./src/tailwind-input.css -o ./src/tailwind-generated.scss --minify",
     "watch:tailwind": "tailwindcss -i ./src/tailwind-input.css -o ./src/tailwind-generated.scss --minify --watch",
     "develop": "snc ui-component develop",
-    "start": "concurrently \"npm run watch:tailwind\" \"npm run develop\"",
-
-    "inspect": "node scripts/inspect.mjs"
+    "start": "concurrently \"npm run watch:tailwind\" \"npm run develop\""
   },
   "dependencies": {
     "@servicenow/sass-kit": "latest",
