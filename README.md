@@ -1,4 +1,5 @@
 # ServiceNow UI Builder React Wrapper (Golden Stack 🏆)
+
 ![React](https://img.shields.io/badge/React-17-blue)
 ![ServiceNow](https://img.shields.io/badge/ServiceNow-Zurich%2B-qt)
 ![Tailwind](https://img.shields.io/badge/Tailwind-CSS-38bdf8)
@@ -6,6 +7,14 @@
 This project serves as a robust, production-ready template for integrating **React (v17)** and **Tailwind CSS** within the **ServiceNow UI Builder**.
 
 It addresses the specific build constraints of the ServiceNow CLI, ensures seamless communication between the Shadow DOM and the platform, and provides a modern Developer Experience (DX).
+
+<br>
+
+<div align="center">
+  <img src="./assets/preview.png" width="100%" alt="Project Preview">
+</div>
+
+<br>
 
 ---
 ## 📋 Prerequisites
@@ -44,15 +53,11 @@ Use a unified command to handle both the ServiceNow server and the Tailwind JIT 
        * **Tailwind Watcher:** Monitors `.js/.jsx` files and recompiles CSS instantly.
        * **ServiceNow Server:** Serves the widget locally with Hot Reload.
 
-## 📦 Deployment
+---
 
-Due to strict version requirements, always perform a **clean install** if you encounter build errors.
+## ⚙️ Setup: Changing Vendor Prefix
 
-1. `rm -rf node_modules package-lock.json`
-2. `npm install`
-3. `snc ui-component deploy --profile <profile> --force`
-
-The project is currently configured with a demo vendor prefix (`x-513106`). To deploy this component to your own ServiceNow instance (PDI or Enterprise), you must update the vendor prefix and scope name to match your environment.
+The project is currently configured with a demo vendor prefix (`x-513106`). **Before deploying**, you must update the vendor prefix and scope name to match your environment.
 
 **Example Scenario:**
 * **Current Prefix:** `x-513106`
@@ -112,7 +117,17 @@ Locate the `now-ui.json` file in the root directory.
         <x-999999-ui-framework-react-wrapper></x-999999-ui-framework-react-wrapper>
     `;
     ```
-After these changes, run `npm install` and `npm start` to verify the local setup works before deploying via `now-cli deploy`.
+
+---
+
+## 📦 Deployment
+
+Once you have updated the vendor prefix, you can deploy to your instance.
+Due to strict version requirements, always perform a **clean install** if you encounter build errors.
+
+1. `rm -rf node_modules package-lock.json`
+2. `npm install`
+3. `snc ui-component deploy --profile <profile> --force`
 
 ---
 
@@ -148,7 +163,7 @@ Think of this as an "Onion Architecture":
 [ UI Builder ]
         ⬇ (Props)                     ⬆ (Events)
 -------------------------------------------------------
-1. 🛡️ UI Framework Wrapper (index.js)           
+1. 🛡️ UI Framework Wrapper (index.js)          
       | Communicates with UI Builder
       | Uses Snabbdom Renderer
       | Handles Shadow DOM & Style Injection
@@ -320,7 +335,7 @@ This wrapper was born out of frustration and countless hours of fighting the Ser
 
 If this template saved you time, headache, or prevented a nervous breakdown while fighting the Shadow DOM, consider buying me a coffee. It keeps the motivation high!
 
-<a href="https://buymeacoffee.com/janmoser" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 60px !important;width: 217px !important;" ></a>
+[![Buy Me A Coffee](https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png)](https://buymeacoffee.com/janmoser)
 
 ## 🤝 Contributing
 
@@ -329,4 +344,3 @@ Feel free to fork this repository and submit Pull Requests. If you find a way to
 ## 📄 License
 
 This project is licensed under the MIT License.
-
