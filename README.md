@@ -177,15 +177,15 @@ Think of this as an "Onion Architecture":
 
 ## 📡 Generic Event Dispatching System
 
-You **do not** need to modify `index.js` to add new events. The React application receives a universal `dispatch` function via props.
+You **do not** need to modify `index.js` to add new events. The ReactBridge.js receives a universal `dispatch` function via props.
 
 #### Workflow: Adding a New Event
 
-1. **React Component:**
+1. **React Bridge:**
     ```javascript
     const handleHover = (data) => {
         // Just call dispatch with any event name
-        props.dispatch('CHART_HOVER', { id: data.id });
+        dispatch('CHART_HOVER', { id: data.id });
     };
     ```
 
@@ -220,11 +220,11 @@ To pass data FROM ServiceNow TO React:
     ]
     ```
 
-2. **React Component:**
-    The property is automatically available in `MyReactApp` props.
+2. **React Bridge:**
+    The property is automatically available in `ReactBridge.js` props.
     ```javascript
-    // MyReactApp.js
-    export const MyReactApp = ({ reportTitle, dispatch }) => {
+    // ReactBridge.js
+    export const ReactBridge = ({ reportTitle, dispatch }) => {
         return <h1>{reportTitle}</h1>;
     };
     ```
