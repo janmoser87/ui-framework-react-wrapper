@@ -247,7 +247,7 @@ This project uses **React 17** for maximum stability with the ServiceNow build s
 
 _Note: For 99% of standard UI components (dashboards, forms, charts), React 17 is perfectly sufficient._
 
-## 🚫 Library Compatibility (The "Golden Stack" Rule)
+## 🚫 Library Compatibility
 
 ⚠️ **CRITICAL WARNING:** This environment is extremely sensitive to 3rd party dependencies due to:
 1.  **Shadow DOM Isolation:** Blocks global styles.
@@ -260,7 +260,7 @@ Do not install these libraries, as they break the build or render incorrectly:
 * **Ant Design** - Global styles do not penetrate Shadow DOM.
 * **Bootstrap (JS/CSS)** - Relies on global CSS.
 
-## ✅ What is confirmed to WORK (The Golden Stack):
+## ✅ What is confirmed to WORK:
 The only 100% guaranteed approach is to build components yourself using standard React and Tailwind CSS.
 
 * **Layouts/Buttons/Cards:** Build them as pure React components. Style them with Tailwind utility classes.
