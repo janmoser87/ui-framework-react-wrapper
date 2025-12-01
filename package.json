@@ -1,0 +1,44 @@
+{
+  "name": "ui-framework-react-wrapper",
+  "version": "0.0.1",
+  "private": false,
+  "description": "Ui Framework React Wrapper",
+  "keywords": [
+    "ServiceNow",
+    "Next Experience UI Component",
+    "ui-framework-react-wrapper"
+  ],
+  "readme": "./README.md",
+  "engines": {
+    "node": ">=22"
+  },
+  "module": "src/index.js",
+  "scripts": {
+    "build:tailwind": "tailwindcss -i ./src/tailwind-input.css -o ./src/tailwind-generated.scss --minify",
+    "watch:tailwind": "tailwindcss -i ./src/tailwind-input.css -o ./src/tailwind-generated.scss --minify --watch",
+    "develop": "snc ui-component develop",
+    "start": "concurrently \"npm run watch:tailwind\" \"npm run develop\"",
+
+    "inspect": "node scripts/inspect.mjs"
+  },
+  "dependencies": {
+    "@servicenow/sass-kit": "latest",
+    "@servicenow/ui-core": "24.1.1",
+    "@servicenow/ui-renderer-snabbdom": "24.1.1",
+    "chart.js": "^3.9.1",
+    "react": "17.0.2",
+    "react-chartjs-2": "^4.3.1",
+    "react-dom": "17.0.2",
+    "react-shadow-dom-retarget-events": "^1.1.0"
+  },
+  "devDependencies": {
+    "@babel/plugin-transform-react-jsx": "^7.27.1",
+    "@babel/runtime": "7.25.7",
+    "ajv": "^6.12.6",
+    "autoprefixer": "^10.4.22",
+    "concurrently": "^9.2.1",
+    "postcss": "^8.5.6",
+    "sass": "1.53.0",
+    "tailwindcss": "^3.4.18"
+  }
+}

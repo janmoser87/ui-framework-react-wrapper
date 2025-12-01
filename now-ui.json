@@ -1,0 +1,45 @@
+{
+	"components": {
+		"x-513106-ui-framework-react-wrapper": {
+			"innerComponents": [],
+			"uiBuilder": {
+				"associatedTypes": [
+					"global.core",
+					"global.landing-page"
+				],
+				"label": "UI Framework React Wrapper",
+				"tileIcon": "./tile-icon/generic-tile-icon.svg",
+				"description": "Example of how to wrap a React component(s) inside UI Framework component.",
+				"category": "primitives"
+			},
+			"actions": [
+				{
+					"name": "MY_REACT_CLICKED",
+					"label": "On React Click",
+					"description": "Spustí se, když uživatel klikne na tlačítko v Reactu",
+					"payload": [
+						{
+							"name": "message",
+							"label": "Message String"
+						},
+						{
+							"name": "timestamp",
+							"label": "Time of Click"
+						}
+					]
+				}
+			],
+			"properties": [
+				{
+					"name": "name",
+					"label": "Name",
+					"description": "Your name",
+					"readOnly": false,
+					"fieldType": "string",
+					"required": false
+				}
+			]
+		}
+	},
+	"scopeName": "x_513106_ufrw"
+}
