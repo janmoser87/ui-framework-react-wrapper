@@ -53,8 +53,6 @@ Use a unified command to handle both the ServiceNow server and the Tailwind JIT 
        * **Tailwind Watcher:** Monitors `.js/.jsx` files and recompiles CSS instantly.
        * **ServiceNow Server:** Serves the widget locally with Hot Reload.
 
----
-
 ## ⚙️ Setup: Changing Vendor Prefix
 
 The project is currently configured with a demo vendor prefix (`x-513106`). **Before deploying**, you must update the vendor prefix and scope name to match your environment.
@@ -118,8 +116,6 @@ Locate the `now-ui.json` file in the root directory.
     `;
     ```
 
----
-
 ## 📦 Deployment
 
 Once you have updated the vendor prefix, you can deploy to your instance.
@@ -129,29 +125,25 @@ Due to strict version requirements, always perform a **clean install** if you en
 2. `npm install`
 3. `snc ui-component deploy --profile <profile> --force`
 
----
-
 ## 🛠 Architecture Overview
 
 The core philosophy is isolation and compatibility.
 
-### 1. The Gate (`index.js`)
+#### 1. The Gate (`index.js`)
 * **The Gatekeeper:** The only file that communicates directly with the ServiceNow `createCustomElement` API.
 * **Shadow DOM Manager:** It manually injects the compiled Tailwind CSS + SCSS styles into the Shadow Root to ensure proper styling.
 * **Event Retargeting:** Implements manual event retargeting logic. Since React events (like `onClick`) struggle to bubble out of Shadow DOM, this layer fixes the event path.
 * **Error Boundary:** Acts as a safety net. If the React application crashes, the Gate catches the error and displays a fallback UI instead of breaking the entire UI Builder page.
 
-### 2. The Bridge (`ReactBridge.js`)
+#### 2. The Bridge (`ReactBridge.js`)
 * **The Translator:** Decouples the UI Framework from the React Application.
 * **Prop Normalization:** Receives raw properties from ServiceNow and transforms them into clean props for the React app.
 * **Action Handling:** It defines the specific callback functions. The React App calls `onAction(data)`, and the Bridge translates this into a specific ServiceNow `dispatch('EVENT_NAME', data)` call.
 
-### 3. The React App (`components/MyReactApp.js`)
+#### 3. The React App (`components/MyReactApp.js`)
 * **Pure React 17:** A standard React application that knows nothing about ServiceNow, `snc`, or Shadow DOM.
 * **Reusable:** Because it is isolated, this component could theoretically be moved to a standard web app and would still work (just by replacing the Bridge).
 * **State Management:** Uses standard hooks (`useState`, `useEffect`) and **Context API** (`ThemeProvider`) to demonstrate robust state management across the component tree.
-
----
 
 ## 🧱 The Immutable Core (Must Read)
 
@@ -183,30 +175,19 @@ Think of this as an "Onion Architecture":
 -------------------------------------------------------
 ```
 
----
+## ☕ Support the Project
 
-## 🧩 Modals & Popups (Architecture Decision)
+This wrapper was born out of frustration and countless hours of fighting the ServiceNow build system.
 
-This project includes a technically functional `MyReactModal` component that uses **React Portals** to break out of the Shadow DOM and render into `document.body` (while maintaining style isolation via a nested Shadow Root).
+If this template saved you time, headache, or prevented a nervous breakdown while fighting the Shadow DOM, consider buying me a coffee. It keeps the motivation high!
 
-### ⚠️ Recommendation: Use UI Builder Modals
-While the React Modal implementation proves it *can* be done, **the recommended best practice is:**
-
-1. **React:** Dispatch an event (e.g., `OPEN_MODAL_REQUESTED`).
-2. **UI Builder:** Handle the event and open a **native ServiceNow Modal**.
-
-**Why?**
-* Consistency with the rest of the platform UI.
-* Better Accessibility (a11y) support out-of-the-box.
-* Less code to maintain within the custom widget.
-
----
+[![Buy Me A Coffee](https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png)](https://buymeacoffee.com/janmoser)
 
 ## 📡 Generic Event Dispatching System
 
 You **do not** need to modify `index.js` to add new events. The React application receives a universal `dispatch` function via props.
 
-### Workflow: Adding a New Event
+#### Workflow: Adding a New Event
 
 1. **React Component:**
     ```javascript
@@ -230,11 +211,9 @@ You **do not** need to modify `index.js` to add new events. The React applicatio
 
 3. **Result:** The event appears in UI Builder's "Events" tab automatically.
 
----
-
 ## 🛄 Properties
 
-### Workflow: Adding a New Input (Property)
+#### Workflow: Adding a New Input (Property)
 
 To pass data FROM ServiceNow TO React:
 
@@ -257,9 +236,6 @@ To pass data FROM ServiceNow TO React:
         return <h1>{reportTitle}</h1>;
     };
     ```
-
----
-
 ## ⚙️ Critical Configuration
 
 For this wrapper to build successfully, these configurations are mandatory (already included):
@@ -279,22 +255,20 @@ This project uses **React 17** for maximum stability with the ServiceNow build s
 
 _Note: For 99% of standard UI components (dashboards, forms, charts), React 17 is perfectly sufficient._
 
----
-
 ## 🚫 Library Compatibility (The "Golden Stack" Rule)
 
 ⚠️ **CRITICAL WARNING:** This environment is extremely sensitive to 3rd party dependencies due to:
 1.  **Shadow DOM Isolation:** Blocks global styles.
 2.  **Legacy Build System:** The internal Webpack config often fails to compile modern libraries using CSS-in-JS engines or complex ESM exports.
 
-### ❌ What is confirmed to FAIL:
+## ❌ What is confirmed to FAIL:
 Do not install these libraries, as they break the build or render incorrectly:
 * **Material UI (MUI v5/v6)** - Build fails (Emotion dependency).
 * **Chakra UI** - Build fails (Emotion dependency).
 * **Ant Design** - Global styles do not penetrate Shadow DOM.
 * **Bootstrap (JS/CSS)** - Relies on global CSS.
 
-### ✅ What is confirmed to WORK (The Golden Stack):
+## ✅ What is confirmed to WORK (The Golden Stack):
 The only 100% guaranteed approach is to build components yourself using standard React and Tailwind CSS.
 
 * **Layouts/Buttons/Cards:** Build them as pure React components. Style them with Tailwind utility classes.
@@ -302,23 +276,21 @@ The only 100% guaranteed approach is to build components yourself using standard
 * **Charts:** `Chart.js` / `react-chartjs-2` (Verified).
 * **Data Fetching:** Native `fetch` or `axios`.
 
-### 🧪 Experimental (Use at your own risk):
+#### 🧪 Experimental (Use at your own risk):
 "Headless" libraries (like *Radix UI*, *Headless UI*, or *React Aria*) theoretically **should** work better because they don't rely on CSS-in-JS engines. However, **they have NOT been verified** in this specific wrapper build chain.
 
 > **Recommendation:** If you need complex UI (like a Datepicker or Combobox), try to find a lightweight, zero-dependency implementation or build a custom one. If you decide to try a library, install and deploy it immediately to verify compatibility before building features on top of it.
-
----
 
 ## 🎨 Styling with Tailwind CSS
 
 Unlike traditional setups, we **do not** use a CDN. Instead, we compile Tailwind CSS directly into the component to ensure **Shadow DOM isolation** (styles do not bleed out, global styles do not bleed in).
 
-### How it works
+#### How it works
 1. **Source:** `src/tailwind-input.css` (Entry point for Tailwind directives and custom CSS).
 2. **Build:** The watcher compiles your React usage into `src/tailwind-generated.scss`.
 3. **Injection:** `index.js` injects the generated string into the component's Shadow Root `<style>` tag.
 
-### How to add styles?
+#### How to add styles?
 * **Utility Classes:** Just use them in JSX: `<div className="p-4 bg-blue-500 hover:opacity-50">`. The watcher detects them and generates the CSS automatically.
 * **Custom CSS:** If you need specific styles (fonts, animations) that Tailwind can't handle, add them to `src/tailwind-input.css` inside the `@layer` directive:
     ```css
@@ -329,17 +301,24 @@ Unlike traditional setups, we **do not** use a CDN. Instead, we compile Tailwind
     }
     ```
 
-## ☕ Support the Project
+## 🧩 Modals & Popups (Architecture Decision)
 
-This wrapper was born out of frustration and countless hours of fighting the ServiceNow build system.
+This project includes a technically functional `MyReactModal` component that uses **React Portals** to break out of the Shadow DOM and render into `document.body` (while maintaining style isolation via a nested Shadow Root).
 
-If this template saved you time, headache, or prevented a nervous breakdown while fighting the Shadow DOM, consider buying me a coffee. It keeps the motivation high!
+### ⚠️ Recommendation: Use UI Builder Modals
+While the React Modal implementation proves it *can* be done, **the recommended best practice is:**
 
-[![Buy Me A Coffee](https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png)](https://buymeacoffee.com/janmoser)
+1. **React:** Dispatch an event (e.g., `OPEN_MODAL_REQUESTED`).
+2. **UI Builder:** Handle the event and open a **native ServiceNow Modal**.
+
+**Why?**
+* Consistency with the rest of the platform UI.
+* Better Accessibility (a11y) support out-of-the-box.
+* Less code to maintain within the custom widget.
 
 ## 🤝 Contributing
 
-Feel free to fork this repository and submit Pull Requests. If you find a way to make modern CSS-in-JS libraries work with the ServiceNow build system, please share your findings!
+Feel free to fork it, break it, and fix it. If you find a way to make Material UI work or have any other improvements, pull requests are more than welcome.
 
 ## 📄 License
 
