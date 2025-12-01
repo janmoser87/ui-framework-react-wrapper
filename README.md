@@ -175,14 +175,6 @@ Think of this as an "Onion Architecture":
 -------------------------------------------------------
 ```
 
-## ☕ Support the Project
-
-This wrapper was born out of frustration and countless hours of fighting the ServiceNow build system.
-
-If this template saved you time, headache, or prevented a nervous breakdown while fighting the Shadow DOM, consider buying me a coffee. It keeps the motivation high!
-
-[![Buy Me A Coffee](https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png)](https://buymeacoffee.com/janmoser)
-
 ## 📡 Generic Event Dispatching System
 
 You **do not** need to modify `index.js` to add new events. The React application receives a universal `dispatch` function via props.
@@ -315,6 +307,14 @@ While the React Modal implementation proves it *can* be done, **the recommended 
 * Consistency with the rest of the platform UI.
 * Better Accessibility (a11y) support out-of-the-box.
 * Less code to maintain within the custom widget.
+
+## ☕ Support the Project
+
+This wrapper was born out of frustration and countless hours of fighting the ServiceNow build system.
+
+If this template saved you time, headache, or prevented a nervous breakdown while fighting the Shadow DOM, consider buying me a coffee. It keeps the motivation high!
+
+[![Buy Me A Coffee](https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png)](https://buymeacoffee.com/janmoser)
 
 ## 🤝 Contributing
 
