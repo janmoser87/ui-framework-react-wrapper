@@ -322,4 +322,4 @@ Feel free to fork it, break it, and fix it. If you find a way to make Material U
 
 ## 📄 License
 
-This project is licensed under the MIT License.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
