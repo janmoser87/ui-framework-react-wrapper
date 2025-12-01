@@ -22,6 +22,7 @@ Before you clone the repository, ensure you have the following installed and con
 3.  **UI Component Extension**
     * The core CLI is not enough; you need the component extension.
     * Run: `snc extension add --name ui-component`
+    * [Official Setup Guide](https://www.servicenow.com/docs/bundle/xanadu-application-development/page/build/components/concept/custom-components.html)
 
 4.  **A ServiceNow Instance**
     * Targeting **Zurich** or newer.
