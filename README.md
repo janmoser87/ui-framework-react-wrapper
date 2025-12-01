@@ -7,8 +7,6 @@ This project serves as a robust, production-ready template for integrating **Rea
 
 It addresses the specific build constraints of the ServiceNow CLI, ensures seamless communication between the Shadow DOM and the platform, and provides a modern Developer Experience (DX).
 
-![Preview](./assets/preview.png)
-
 ---
 ## 📋 Prerequisites
 
@@ -45,7 +43,13 @@ Use a unified command to handle both the ServiceNow server and the Tailwind JIT 
        * **Tailwind Watcher:** Monitors `.js/.jsx` files and recompiles CSS instantly.
        * **ServiceNow Server:** Serves the widget locally with Hot Reload.
 
-## 🚀 Deployment
+## 📦 Deployment
+
+Due to strict version requirements, always perform a **clean install** if you encounter build errors.
+
+1. `rm -rf node_modules package-lock.json`
+2. `npm install`
+3. `snc ui-component deploy --profile <profile> --force`
 
 The project is currently configured with a demo vendor prefix (`x-513106`). To deploy this component to your own ServiceNow instance (PDI or Enterprise), you must update the vendor prefix and scope name to match your environment.
 
@@ -107,8 +111,8 @@ Locate the `now-ui.json` file in the root directory.
         <x-999999-ui-framework-react-wrapper></x-999999-ui-framework-react-wrapper>
     `;
     ```
-
 After these changes, run `npm install` and `npm start` to verify the local setup works before deploying via `now-cli deploy`.
+
 ---
 
 ## 🛠 Architecture Overview
@@ -260,14 +264,6 @@ This project uses **React 17** for maximum stability with the ServiceNow build s
 _Note: For 99% of standard UI components (dashboards, forms, charts), React 17 is perfectly sufficient._
 
 ---
-
-## 📦 Deployment
-
-Due to strict version requirements, always perform a **clean install** if you encounter build errors.
-
-1. `rm -rf node_modules package-lock.json`
-2. `npm install`
-3. `snc ui-component deploy --profile <profile> --force`
 
 ## 🚫 Library Compatibility (The "Golden Stack" Rule)
 
